@@ -1,0 +1,28 @@
+package com.example.demo.services;
+
+import java.util.NoSuchElementException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exceptions.StudentExistsException;
+import com.example.demo.models.Student;
+import com.example.demo.repository.StudentRepo;
+
+@Service
+public class StudentService {
+	@Autowired
+	private StudentRepo repo;
+	
+	public Iterable<Student> getStudents(){
+		return repo.findAll();
+	}
+	
+	public void deleteStudent(String sid) {
+		try {
+		repo.delete(repo.findStudentBySid(sid).get());
+		}catch(NoSuchElementException nsee) {
+			throw new StudentExistsException(String.format("Student with Sid {%s} Does not exist", sid));
+		}
+	}
+}

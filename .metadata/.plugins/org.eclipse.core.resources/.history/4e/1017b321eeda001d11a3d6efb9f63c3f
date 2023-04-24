@@ -1,0 +1,64 @@
+package com.example.demo.controller;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.models.Lecturer;
+import com.example.demo.models.Student;
+import com.example.demo.services.LecturerService;
+import com.example.demo.services.StudentService;
+import com.example.demo.validation.LecturerPOSTValidation;
+import com.example.demo.validation.LecturerPUTValidation;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+@RestController
+@Validated
+public class Controller {
+	@Autowired
+	private LecturerService ls;
+	@Autowired
+	private StudentService ss;
+
+	@GetMapping("lecturers")
+	public Iterable<Lecturer> getLecturers() {
+		return ls.getLecturers();
+	}
+	
+	@GetMapping("lecturer")
+	public Lecturer getLecturer() {
+		Lecturer aa = ls.getLecturer().get();
+		System.out.println("This is the response " +  aa);
+		return aa;
+	}
+	@PostMapping("lecturer")
+	@Validated(LecturerPOSTValidation.class)
+	public ResponseEntity<Lecturer> saveLecturer(@Valid @RequestBody Lecturer lecturer) {	
+		return ResponseEntity.ok(ls.saveLecturer(lecturer));
+	}
+	@PutMapping("/lecturer/{lid}")
+	@Validated(LecturerPUTValidation.class)
+	public ResponseEntity<Lecturer> udpateLectuter(@PathVariable(value="lid") String lid, @Valid @RequestBody Lecturer lecturer){
+		//lecturer.setLid(lid);
+		return ResponseEntity.ok(ls.updateLecturer(lid, lecturer));
+	}
+	
+	@GetMapping("lecturer/search")
+	public ResponseEntity<Iterable<Lecturer>> searchLecturer(@NotNull(message="") @RequestParam String taxBand, @RequestParam Optional<Integer> salaryScale){
+		return ResponseEntity.ok(ls.searchLecturer(taxBand, salaryScale.orElse(0)));
+	}
+	
+	@GetMapping("students")
+	public ResponseEntity<Iterable<Student>> getStudents(){
+		
+	}
+}

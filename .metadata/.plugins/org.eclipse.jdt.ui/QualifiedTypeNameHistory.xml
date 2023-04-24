@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="javax.validation.ValidatorContext"/>
+    <fullyQualifiedTypeName name="javax.validation.Valid"/>
+    <fullyQualifiedTypeName name="javax.xml.validation.Validator"/>
+    <fullyQualifiedTypeName name="org.hibernate.mapping.Set"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.Validator"/>
+    <fullyQualifiedTypeName name="jakarta.validation.Validator"/>
+    <fullyQualifiedTypeName name="jakarta.validation.ConstraintViolation"/>
+    <fullyQualifiedTypeName name="jakarta.validation.ConstraintViolationException"/>
+    <fullyQualifiedTypeName name="javax.validation.ConstraintViolation"/>
+    <fullyQualifiedTypeName name="javax.validation.ConstraintViolationException"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+    <fullyQualifiedTypeName name="javax.validation.Validator"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+    <fullyQualifiedTypeName name="javax.validation.Validation"/>
+    <fullyQualifiedTypeName name="javax.validation.ValidatorFactory"/>
+    <fullyQualifiedTypeName name="javax.validation.ValidationProviderResolver"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.Null"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
+    <fullyQualifiedTypeName name="jakarta.validation.constraints.Null"/>
+    <fullyQualifiedTypeName name="jakarta.validation.Valid"/>
+    <fullyQualifiedTypeName name="com.example.demo.validation.LecturerPOSTValidation"/>
+    <fullyQualifiedTypeName name="org.springframework.dao.DataIntegrityViolationException"/>
+    <fullyQualifiedTypeName name="com.example.demo.exceptions.LecturerExistsException"/>
+    <fullyQualifiedTypeName name="com.example.demo.validation.LecturerPUTValidation"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotNull"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
+</qualifiedTypeNameHistroy>

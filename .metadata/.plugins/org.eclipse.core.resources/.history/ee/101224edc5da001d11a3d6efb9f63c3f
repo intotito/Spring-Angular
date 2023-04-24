@@ -1,0 +1,46 @@
+package com.example.demo.controller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.models.Lecturer;
+import com.example.demo.services.LecturerService;
+@RestController
+public class Controller {
+	@Autowired
+	private LecturerService ls;
+	
+	@GetMapping("lecturers")
+	public Optional<Iterable<Lecturer>> getLecturers() {
+		Optional<Iterable<Lecturer>> result = ls.getLecturers();
+		Iterable<Lecturer> it = result.get();
+		List<Lecturer> list = new ArrayList<>();
+		it.forEach(l -> {
+			list.add(l);
+		});
+		//return list.toArray(Lecturer[]::new);
+		return result;
+	}
+	
+	@GetMapping("lecturer")
+	public Lecturer getLecturer() {
+		Lecturer aa = ls.getLecturer().get();
+		System.out.println("This is the response " +  aa);
+		return aa;
+	}
+
+	@PostMapping("lecturer")
+	public ResponseEntity<Lecturer> saveLecturer(@Validated @RequestBody Lecturer lecturer) {		
+		ls.saveLecturer(lecturer);
+	//return	ResponseEntity.badRequest().body(lecturer);
+		return ResponseEntity.ok(lecturer);
+	}
+}

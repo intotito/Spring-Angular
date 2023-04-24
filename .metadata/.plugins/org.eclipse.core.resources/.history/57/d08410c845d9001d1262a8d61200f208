@@ -1,0 +1,44 @@
+package com.example.demo.services;
+
+import java.util.Optional;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.xml.validation.Validator;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.models.Lecturer;
+import com.example.demo.repository.LecturerRepo;
+@Service
+public class LecturerService {
+	@Autowired
+	LecturerRepo repo;
+	@Autowired
+	Validator validator;
+	
+	public Optional<Iterable<Lecturer>> getLecturers(){
+		return Optional.of(repo.findAll());
+	}
+	
+	public Optional<Lecturer> getLecturer(){
+		return repo.findById(2);
+	}
+	
+	public void saveLecturer(Lecturer lecturer) {
+		Set<ConstraintViolation<?>> violations;// = validator.validate(lecturer);
+
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<Lecturer> constraintViolation : violations) {
+                sb.append(constraintViolation.getMessage());
+            }
+            throw new ConstraintViolationException("Error occurred: " + sb.toString(), violations);
+        }
+
+        dao.addUserAccount(useraccount);      
+		repo.save(lecturer);
+	}
+}

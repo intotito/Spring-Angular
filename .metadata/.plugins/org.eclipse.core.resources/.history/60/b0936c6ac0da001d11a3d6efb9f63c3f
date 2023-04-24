@@ -1,0 +1,20 @@
+package com.example.demo.config;
+
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+//
+//@Configuration
+public class JavaConfiguration {
+//	@Bean
+	public Validator getValidator() {
+		javax.validation.Configuration configuration = Validation.byProvider(javax.validation.spi.ValidationProvider.class).configure();
+		ValidatorFactory factory = configuration.buildValidatorFactory();
+		Validator validator = factory.getValidator();
+		return validator;
+	}
+}

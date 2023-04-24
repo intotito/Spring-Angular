@@ -1,0 +1,34 @@
+package com.example.demo.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exceptions.LecturerExistsException;
+import com.example.demo.models.Lecturer;
+import com.example.demo.repository.LecturerRepo;
+
+
+@Service
+public class LecturerService {
+	@Autowired
+	LecturerRepo repo;
+
+	public Optional<Iterable<Lecturer>> getLecturers(){
+		return Optional.of(repo.findAll());
+	}
+	
+	public Optional<Lecturer> getLecturer(){
+		return repo.findById(2);
+	}
+	
+	public void saveLecturer(Lecturer lecturer) {
+		try {
+		repo.save(lecturer);
+		} catch(DataIntegrityViolationException dive) {
+			throw new LecturerExistsException(String.format("Lecturer with Lid {%s} Already Exist", lecturer.getLid()));
+		}
+	}
+}
